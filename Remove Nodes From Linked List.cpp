@@ -36,6 +36,22 @@ public:
     }
 };
 
+//Code-2 Recursion T.C : O(n)
+class Solution {
+public:
+    ListNode* removeNodes(ListNode* head) {
+        if(!head || !head->next)
+            return head;
+        ListNode* newNode=removeNodes(head->next);
+        if(head->val<newNode->val){
+            delete head;
+            return newNode;
+        }
+        head->next=newNode;
+        return head;
+    }
+};
+
 /*
     You are given the head of a linked list.
     Remove every node which has a node with a greater value anywhere to the right side of it.
